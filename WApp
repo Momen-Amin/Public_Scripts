@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# ==============================
+#   Server IP Reporter Script
+# ==============================
+
+HOSTNAME=$(hostname)
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+# Public IP
+public_ip_address=$(curl -s https://api.ipify.org)
+
+# Collect interface names + IPv4 addresses
+private_ips=""
+for iface in $(ls /sys/class/net/); do
+    ip_addr=$(ip -4 addr show "$iface" | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+    if [[ -n "$ip_addr" ]]; then
+        private_ips+="$iface: $ip_addr"$'\n'
+    fi
+done
+
+# ============================
+# Email Section
+# ============================
+recipient="momen.amin@hotmail.com"
+subject="[$HOSTNAME] Server IP Report"
+
+email_body="Server Hostname: ${HOSTNAME}
+Date: ${DATE}
+
+Public IP Address:
+${public_ip_address}
+
+Private IP Addresses (with interface names):
+${private_ips}
+"
+
+echo -e "$email_body" | mail -s "$subject" "$recipient"
+
+# ============================
+# WhatsApp Section (Cloud API)
+# ============================
+
+WHATSAPP_TOKEN="<YOUR_WHATSAPP_API_TOKEN>"
+WHATSAPP_NUMBER_ID="<YOUR_NUMBER_ID>"
+TARGET_MOBILE="<YOUR_PHONE_NUMBER>"   # format: 2010XXXXXXXX
+
+wa_message="Server: $HOSTNAME
+Date: $DATE
+
+Public IP:
+$public_ip_address
+
+Private IPs:
+$private_ips"
+
+curl -i -X POST `
+  https://graph.facebook.com/v22.0/872048119329843/messages `
+  -H 'Authorization: Bearer EAARJedUR0lEBQJJwLpHuZC4i5arx3FfZBTyXMiZAgtwOzO2fik5owxjKg77b9xZARD8CF2OXtGRoTYW437gAZBwdhDNxw8zDq3rksTvV4D22rPCp6GjBuY0solQnM33YswyqvtocSphbZCBw2q2GiIL2hZATFFvFEzt4sMdGA5jfBvh3F0ZAErn8bJ60qIQZCZBiNu13x8UzZAM2vVL8vjalHDoEAs0wWhALdNZBjAcO0AkCdl2Li8zZCfTMKlN3yYZCQ42bSqZAI1vJjJqi9ZCCukBteK1PXadsmCyjwoHU' `
+  -H 'Content-Type: application/json' `
+  -d '{ \"messaging_product\": \"whatsapp\", \"to\": \"201025330104\", \"type\": \"template\", \"template\": { \"name\": \"jaspers_market_plain_text_v1\", \"language\": { \"code\": \"en_US\" } } }'
