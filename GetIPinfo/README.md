@@ -7,7 +7,7 @@ curl -s https://raw.githubusercontent.com/Momen-Amin/Public_Scripts/refs/heads/m
 ```
 
 # Get result:
-
+```
 ==============================
  Server IP Information
 ==============================
@@ -20,5 +20,5 @@ Private IPs (with interfaces):
 eth0: xx.xx.x.xxx
 lo: 127.0.0.1
 vpn: xx.xx.x.xxx
-
 ==============================
+```
