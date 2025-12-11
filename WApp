@@ -54,13 +54,12 @@ $public_ip_address
 Private IPs:
 $private_ips"
 
-curl -s -X POST \
-  https://graph.facebook.com/v17.0/$WHATSAPP_NUMBER_ID/messages \
-  -H "Authorization: Bearer $WHATSAPP_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d "{
-        \"messaging_product\": \"whatsapp\",
-        \"to\": \"$TARGET_MOBILE\",
-        \"type\": \"text\",
-        \"text\": { \"body\": \"${wa_message}\" }
-      }" >/dev/null
+curl -s -X POST "https://graph.facebook.com/v22.0/<NUMBER_ID>/messages" \
+-H "Authorization: Bearer <YOUR_API_TOKEN>" \
+-H "Content-Type: application/json" \
+-d '{
+  "messaging_product": "whatsapp",
+  "to": "<TARGET_PHONE_NUMBER>",
+  "type": "text",
+  "text": { "body": "Hello from the server" }
+}'
