@@ -3,7 +3,7 @@
 # This is script to Get and Send server IP info to the email address
 
 ```
-curl -s https://raw.githubusercontent.com/Momen-Amin/Public_Scripts/refs/heads/main/GetIPinfo | bash
+curl -s https://raw.githubusercontent.com/Momen-Amin/Public_Scripts/refs/heads/main/GetIPinfo/GetIPinfo | bash
 ```
 
 # Get result:
