@@ -41,9 +41,9 @@ echo -e "$email_body" | mail -s "$subject" "$recipient"
 # WhatsApp Section (Cloud API)
 # ============================
 
-WHATSAPP_TOKEN="<YOUR_WHATSAPP_API_TOKEN>"
-WHATSAPP_NUMBER_ID="<YOUR_NUMBER_ID>"
-TARGET_MOBILE="<YOUR_PHONE_NUMBER>"   # format: 2010XXXXXXXX
+WHATSAPP_TOKEN="EAARJedUR0lEBQJJwLpHuZC4i5arx3FfZBTyXMiZAgtwOzO2fik5owxjKg77b9xZARD8CF2OXtGRoTYW437gAZBwdhDNxw8zDq3rksTvV4D22rPCp6GjBuY0solQnM33YswyqvtocSphbZCBw2q2GiIL2hZATFFvFEzt4sMdGA5jfBvh3F0ZAErn8bJ60qIQZCZBiNu13x8UzZAM2vVL8vjalHDoEAs0wWhALdNZBjAcO0AkCdl2Li8zZCfTMKlN3yYZCQ42bSqZAI1vJjJqi9ZCCukBteK1PXadsmCyjwoHU"
+WHATSAPP_NUMBER_ID="872048119329843"
+TARGET_MOBILE="201025330104"   # format: 2010XXXXXXXX
 
 wa_message="Server: $HOSTNAME
 Date: $DATE
@@ -54,8 +54,13 @@ $public_ip_address
 Private IPs:
 $private_ips"
 
-curl -i -X POST `
-  https://graph.facebook.com/v22.0/872048119329843/messages `
-  -H 'Authorization: Bearer EAARJedUR0lEBQJJwLpHuZC4i5arx3FfZBTyXMiZAgtwOzO2fik5owxjKg77b9xZARD8CF2OXtGRoTYW437gAZBwdhDNxw8zDq3rksTvV4D22rPCp6GjBuY0solQnM33YswyqvtocSphbZCBw2q2GiIL2hZATFFvFEzt4sMdGA5jfBvh3F0ZAErn8bJ60qIQZCZBiNu13x8UzZAM2vVL8vjalHDoEAs0wWhALdNZBjAcO0AkCdl2Li8zZCfTMKlN3yYZCQ42bSqZAI1vJjJqi9ZCCukBteK1PXadsmCyjwoHU' `
-  -H 'Content-Type: application/json' `
-  -d '{ \"messaging_product\": \"whatsapp\", \"to\": \"201025330104\", \"type\": \"template\", \"template\": { \"name\": \"jaspers_market_plain_text_v1\", \"language\": { \"code\": \"en_US\" } } }'
+curl -s -X POST \
+  https://graph.facebook.com/v17.0/$WHATSAPP_NUMBER_ID/messages \
+  -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{
+        \"messaging_product\": \"whatsapp\",
+        \"to\": \"$TARGET_MOBILE\",
+        \"type\": \"text\",
+        \"text\": { \"body\": \"${wa_message}\" }
+      }" >/dev/null
