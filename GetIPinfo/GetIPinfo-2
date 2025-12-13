@@ -29,15 +29,15 @@ done
 # Terminal output
 echo
 echo "======================================="
-echo "Server Network Interfaces Information"
+echo "🖥 Server Network Interfaces Information"
 echo "======================================="
 echo "Hostname: $HOSTNAME"
 echo "Date: $DATE"
 echo
-echo "Public IP: $Public_IP_Address"
+echo "🌍 Public IP: $Public_IP_Address"
 echo
-echo "Private IPs (with interfaces):"
-echo "$private_ips"
+echo "🔐 Private IPs (with interfaces):"
+echo "$PRIVATE_IPs"
 echo "======================================="
 echo
 
@@ -63,10 +63,10 @@ subject="[$HOSTNAME] Server Network Interfaces Information"
 email_body="Server Hostname: ${HOSTNAME}
 Date: ${DATE}
 
-Public IP Address:
+🌍 Public IP Address:
 ${Public_IP_Address}
 
-Private IP Addresses (with interface names):
+🔐 Private IP Addresses (with interface names):
 ${PRIVATE_IPs}
 "
 echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server IP Report" "$EMAIL_RECIPIENT"
