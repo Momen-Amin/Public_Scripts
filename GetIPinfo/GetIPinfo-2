@@ -15,16 +15,31 @@ TELEGRAM_CHAT_ID="-5039914012"
 # ----------------------------
 
 # Public IP
-PUBLIC_IP=$(curl -s https://api.ipify.org)
+Public_IP_Address=$(curl -s https://api.ipify.org)
 
-# Private IPs with interface names
-PRIVATE_IPS=""
+# Collect all interface names + IPv4 Addresses
+PRIVATE_IPs=""
 for IFACE in $(ls /sys/class/net/); do
     IP_ADDR=$(ip -4 addr show "$IFACE" | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
     if [[ -n "$IP_ADDR" ]]; then
-        PRIVATE_IPS+="$IFACE: $IP_ADDR"$'\n'
+        PRIVATE_IPs+="$IFACE: $IP_ADDR"$'\n'
     fi
 done
+
+# Terminal output
+echo
+echo "======================================="
+echo "Server Network Interfaces Information"
+echo "======================================="
+echo "Hostname: $HOSTNAME"
+echo "Date: $DATE"
+echo
+echo "Public IP: $Public_IP_Address"
+echo
+echo "Private IPs (with interfaces):"
+echo "$private_ips"
+echo "======================================="
+echo
 
 # ---------- MESSAGE ----------
 MESSAGE="🖥 Server IP Report
@@ -40,6 +55,20 @@ $PRIVATE_IPS
 "
 
 # ---------- EMAIL ----------
+# Email settings
+recipient="$EMAIL_RECIPIENT"
+subject="[$HOSTNAME] Server Network Interfaces Information"
+
+# Email body
+email_body="Server Hostname: ${HOSTNAME}
+Date: ${DATE}
+
+Public IP Address:
+${Public_IP_Address}
+
+Private IP Addresses (with interface names):
+${PRIVATE_IPs}
+"
 echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server IP Report" "$EMAIL_RECIPIENT"
 
 # ---------- TELEGRAM ----------
