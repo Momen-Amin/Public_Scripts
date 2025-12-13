@@ -7,6 +7,13 @@
 HOSTNAME=$(hostname)
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
 
+# ---------- CONFIG ----------
+##EMAIL_RECIPIENT="momen.amin@hotmail.com"
+
+TELEGRAM_BOT_TOKEN="8538049173:AAFgiUy5Uk3vRXSuxkhiKcbHUWCuHx-HqOQ"
+TELEGRAM_CHAT_ID="-5039914012"
+# ----------------------------
+
 # Public IP
 public_ip_address=$(curl -s https://api.ipify.org)
 
@@ -47,6 +54,9 @@ ${public_ip_address}
 
 Private IP Addresses (with interface names):
 ${private_ips}
+
+# ---------- TELEGRAM ----------
+curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
 "
 
 echo -e "$email_body" | mail -s "$subject" "$recipient"
