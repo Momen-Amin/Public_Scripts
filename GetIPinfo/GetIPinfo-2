@@ -11,7 +11,7 @@ DATE=$(date +"%Y-%m-%d %H:%M:%S")
 EMAIL_RECIPIENT="momen.amin@hotmail.com"
 
 TELEGRAM_BOT_TOKEN="8538049173:AAFgiUy5Uk3vRXSuxkhiKcbHUWCuHx-HqOQ"
-TELEGRAM_CHAT_ID="-5039914012"
+TELEGRAM_CHAT_ID="5039914012"
 # ----------------------------
 
 # Public IP
