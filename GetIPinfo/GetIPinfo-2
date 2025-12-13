@@ -42,15 +42,15 @@ echo "======================================="
 echo
 
 # ---------- MESSAGE ----------
-MESSAGE="🖥  Server Network Interfaces Information
+MESSAGE="🖥 - Server Network Interfaces Information
 
 Hostname: $HOSTNAME
 Date: $DATE
 
-🌍 Public IP:
+🌍 Public IP Address:
 $Public_IP_Address
 
-🔐 Private IPs:
+🔐 Private IP Addresses (with interface names):
 $PRIVATE_IPs
 "
 
@@ -60,7 +60,7 @@ recipient="$EMAIL_RECIPIENT"
 subject="[$HOSTNAME] Server Network Interfaces Information"
 
 # Email body
-email_body="Server Hostname: ${HOSTNAME}
+email_body="Server Hostnames: ${HOSTNAME}
 Date: ${DATE}
 
 🌍 Public IP Address:
