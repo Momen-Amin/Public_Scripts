@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# ==============================
+#   Server IP Reporter Script
+# ==============================
+
+HOSTNAME=$(hostname)
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+# ---------- CONFIG ----------
+EMAIL_RECIPIENT="momen.amin@hotmail.com"
+
+TELEGRAM_BOT_TOKEN="8538049173:AAFgiUy5Uk3vRXSuxkhiKcbHUWCuHx-HqOQ"
+TELEGRAM_CHAT_ID="-5039914012"
+# ----------------------------
+
+# Public IP
+PUBLIC_IP=$(curl -s https://api.ipify.org)
+
+# Private IPs with interface names
+PRIVATE_IPS=""
+for IFACE in $(ls /sys/class/net/); do
+    IP_ADDR=$(ip -4 addr show "$IFACE" | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+    if [[ -n "$IP_ADDR" ]]; then
+        PRIVATE_IPS+="$IFACE: $IP_ADDR"$'\n'
+    fi
+done
+
+# ---------- MESSAGE ----------
+MESSAGE="🖥 Server IP Report
+
+Hostname: $HOSTNAME
+Date: $DATE
+
+🌍 Public IP:
+$PUBLIC_IP
+
+🔐 Private IPs:
+$PRIVATE_IPS
+"
+
+# ---------- EMAIL ----------
+echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server IP Report" "$EMAIL_RECIPIENT"
+
+# ---------- TELEGRAM ----------
+curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+     -d chat_id="${TELEGRAM_CHAT_ID}" \
+     -d text="$MESSAGE" \
+     -d parse_mode="Markdown" > /dev/null
