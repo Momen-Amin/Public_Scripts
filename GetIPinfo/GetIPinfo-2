@@ -5,7 +5,7 @@
 # ==============================
 
 HOSTNAME=$(hostname)
-SERVER_DATE/TIME=$(date +"%Y-%m-%d %H:%M:%S")
+DATE-TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
 # ---------- CONFIG ----------
 EMAIL_RECIPIENT="momen.amin@hotmail.com"
@@ -32,7 +32,7 @@ echo "======================================="
 echo "🖥 - Server Network Interfaces Information"
 echo "======================================="
 echo "Hostname: $HOSTNAME"
-echo "Server Date/Time: $SERVER_DATE/TIME"
+echo "Server Date-Time: $DATE-TIME"
 echo
 echo "🌍 Public IP: $Public_IP_Address"
 echo
@@ -45,7 +45,7 @@ echo
 MESSAGE="🖥 - Server Network Interfaces Information
 
 Hostname: $HOSTNAME
-Server Date/Time: $SERVER_DATE-TIME
+Date-Time: $DATE-TIME
 
 🌍 Public IP Address:
 $Public_IP_Address
@@ -61,7 +61,7 @@ subject="[$HOSTNAME] Server Network Interfaces Information"
 
 # Email body
 #email_body="Server Hostnames: ${HOSTNAME}
-Server Date/Time: ${SERVER_DATE-TIME}
+Date-Time: ${DATE-TIME}
 
 🌍 Public IP Address:
 ${Public_IP_Address}
