@@ -42,7 +42,7 @@ echo "======================================="
 echo
 
 # ---------- MESSAGE ----------
-MESSAGE="🖥 Server Network Interfaces Information
+MESSAGE="🖥  Server Network Interfaces Information
 
 Hostname: $HOSTNAME
 Date: $DATE
