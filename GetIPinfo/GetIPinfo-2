@@ -45,7 +45,7 @@ echo
 MESSAGE="🖥 - Server Network Interfaces Information
 
 Hostname: $HOSTNAME
-Server Date/Time: $SERVER_DATE/Time
+Server Date/Time: $SERVER_DATE-TIME
 
 🌍 Public IP Address:
 $Public_IP_Address
@@ -61,7 +61,7 @@ subject="[$HOSTNAME] Server Network Interfaces Information"
 
 # Email body
 #email_body="Server Hostnames: ${HOSTNAME}
-Server Date/Time: ${DATE}
+Server Date/Time: ${SERVER_DATE-TIME}
 
 🌍 Public IP Address:
 ${Public_IP_Address}
