@@ -51,7 +51,7 @@ Date: $DATE
 $Public_IP_Address
 
 🔐 Private IPs:
-$PRIVATE_IPS
+$PRIVATE_IPs
 "
 
 # ---------- EMAIL ----------
