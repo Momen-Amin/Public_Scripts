@@ -60,7 +60,7 @@ recipient="$EMAIL_RECIPIENT"
 subject="[$HOSTNAME] Server Network Interfaces Information"
 
 # Email body
-#email_body="Server Hostnames: ${HOSTNAME}
+email_body="Server Hostnames: ${HOSTNAME}
 Date: ${DATE}
 
 🌍 Public IP Address:
