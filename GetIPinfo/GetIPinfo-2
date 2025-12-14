@@ -34,8 +34,8 @@ echo
 echo "======================================="
 echo "🖥 - Server Network Interfaces Reporter"
 echo "======================================="
-echo "Hostname: $HOSTNAME"
-echo "Date: $DATE"
+echo "🌐 Hostname: $HOSTNAME"
+echo "⌚️ Date: $DATE"
 echo
 echo "🌍 Public IP: $Public_IP_Address"
 echo
@@ -47,8 +47,8 @@ echo
 # ---------------------- Message -----------------------
 MESSAGE="🖥 - Server Network Interfaces Reporter
 
-Hostname: $HOSTNAME
-Date: $DATE
+🌐 Hostname: $HOSTNAME
+⌚️ Date: $DATE
 
 🌍 Public IP Address:
 $Public_IP_Address
