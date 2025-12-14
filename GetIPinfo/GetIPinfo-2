@@ -29,7 +29,7 @@ for IFACE in $(ls /sys/class/net/); do
 done
 # -------------------------------------------------------
 
-# -------------- Terminal output channel ----------------
+# -------------- Terminal Output Channel ----------------
 echo
 echo "======================================="
 echo "🖥 - Server Network Interfaces Reporter"
@@ -57,7 +57,7 @@ $Public_IP_Address
 $PRIVATE_IPs
 "
 
-# -------------------- eMail channel -------------------
+# -------------------- eMail Channel -------------------
 # Email settings
 recipient="$EMAIL_RECIPIENT"
 subject="[$HOSTNAME] Server Network Interfaces Reporter"
@@ -74,7 +74,7 @@ ${PRIVATE_IPs}
 "
 echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server Network Interfaces Reporter" "$EMAIL_RECIPIENT"
 
-# ----------------- Telegram channel -----------------
+# ----------------- Telegram Channel -----------------
 curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
      -d chat_id="${TELEGRAM_CHAT_ID}" \
      --data-urlencode text="$MESSAGE"
