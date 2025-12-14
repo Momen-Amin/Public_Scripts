@@ -64,7 +64,7 @@ subject="[$HOSTNAME] Server Network Interfaces Reporter"
 
 # Email body
 email_body="Server Hostnames: ${HOSTNAME}
-Date: ${DATE}
+⌚️ Date: ${DATE}
 
 🌍 Public IP Address:
 ${Public_IP_Address}
