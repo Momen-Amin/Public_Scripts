@@ -1,18 +1,20 @@
 #!/bin/bash
+# =======================================================
+# Server Network Interfaces Reporter
+# Sends report via Email & Telegram
+# GitHub-ready version
+# =======================================================
 
-# ==============================
-#   Server IP Reporter Script
-# ==============================
-
-HOSTNAME=$(hostname)
-DATE=$(date +"%Y-%m-%d %H:%M:%S")
-
-# ---------- CONFIG ----------
+# -------------------- Configuration --------------------
 EMAIL_RECIPIENT="momen.amin@hotmail.com"
 
 TELEGRAM_BOT_TOKEN="8538049173:AAFgiUy5Uk3vRXSuxkhiKcbHUWCuHx-HqOQ"
 TELEGRAM_CHAT_ID="-5039914012"
-# ----------------------------
+# -------------------------------------------------------
+
+# -------------------- Server Info ----------------------
+HOSTNAME=$(hostname)
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Public IP
 Public_IP_Address=$(curl -s https://api.ipify.org)
@@ -25,11 +27,12 @@ for IFACE in $(ls /sys/class/net/); do
         PRIVATE_IPs+="$IFACE: $IP_ADDR"$'\n'
     fi
 done
+# -------------------------------------------------------
 
-# Terminal output
+# ------------------ Terminal output --------------------
 echo
 echo "======================================="
-echo "🖥 - Server Network Interfaces Information"
+echo "🖥 - Server Network Interfaces Reporter"
 echo "======================================="
 echo "Hostname: $HOSTNAME"
 echo "Date: $DATE"
@@ -42,7 +45,7 @@ echo "======================================="
 echo
 
 # ---------- MESSAGE ----------
-MESSAGE="🖥 - Server Network Interfaces Information
+MESSAGE="🖥 - Server Network Interfaces Reporter
 
 Hostname: $HOSTNAME
 Date: $DATE
@@ -57,7 +60,7 @@ $PRIVATE_IPs
 # ---------- EMAIL ----------
 # Email settings
 recipient="$EMAIL_RECIPIENT"
-subject="[$HOSTNAME] Server Network Interfaces Information"
+subject="[$HOSTNAME] Server Network Interfaces Reporter"
 
 # Email body
 email_body="Server Hostnames: ${HOSTNAME}
@@ -69,7 +72,7 @@ ${Public_IP_Address}
 🔐 Private IP Addresses (with interface names):
 ${PRIVATE_IPs}
 "
-echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server Network Interfaces Information" "$EMAIL_RECIPIENT"
+echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server Network Interfaces Reporter" "$EMAIL_RECIPIENT"
 
 # ---------- TELEGRAM ----------
 curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
