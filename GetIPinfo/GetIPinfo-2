@@ -12,7 +12,7 @@ TELEGRAM_BOT_TOKEN="8538049173:AAFgiUy5Uk3vRXSuxkhiKcbHUWCuHx-HqOQ"
 TELEGRAM_CHAT_ID="-5039914012"
 # -------------------------------------------------------
 
-# -------------------- Server Info ----------------------
+# ---------------- Collect Server Info ------------------
 HOSTNAME=$(hostname)
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
 
@@ -29,7 +29,7 @@ for IFACE in $(ls /sys/class/net/); do
 done
 # -------------------------------------------------------
 
-# ------------------ Terminal output --------------------
+# -------------- Terminal output channel ----------------
 echo
 echo "======================================="
 echo "🖥 - Server Network Interfaces Reporter"
@@ -44,7 +44,7 @@ echo "$PRIVATE_IPs"
 echo "======================================="
 echo
 
-# ---------- MESSAGE ----------
+# ---------------------- Message -----------------------
 MESSAGE="🖥 - Server Network Interfaces Reporter
 
 Hostname: $HOSTNAME
@@ -57,7 +57,7 @@ $Public_IP_Address
 $PRIVATE_IPs
 "
 
-# ---------- EMAIL ----------
+# -------------------- eMail channel -------------------
 # Email settings
 recipient="$EMAIL_RECIPIENT"
 subject="[$HOSTNAME] Server Network Interfaces Reporter"
@@ -74,7 +74,7 @@ ${PRIVATE_IPs}
 "
 echo -e "$MESSAGE" | mail -s "[$HOSTNAME] Server Network Interfaces Reporter" "$EMAIL_RECIPIENT"
 
-# ---------- TELEGRAM ----------
+# ----------------- Telegram channel -----------------
 curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
      -d chat_id="${TELEGRAM_CHAT_ID}" \
      --data-urlencode text="$MESSAGE"
