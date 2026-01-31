@@ -18,7 +18,7 @@ echo "#          History cleared successfully              #"
 echo "#                                                    #"
 echo "######################################################"
 echo " "
-rm -r Clear-History.sh
+rm -f Clear-History.sh
 echo " "
 echo "######################################################"
 echo "#                                                    #"
